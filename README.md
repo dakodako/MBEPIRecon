@@ -101,3 +101,7 @@ There's no way (afaik) to know whether the original call was terminated
 with a semicolon. Thus, a call to e.g. twix.image.NLin will produce
 no output with or without semicolon termination. 'a = twix.image.NLin'
 will however produce the expected result.
+
+## Reconstructing MB-EPI
+need to upload your own rawdata file
+run MBRecon_EPI_example.m
