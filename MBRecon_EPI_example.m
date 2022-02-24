@@ -147,6 +147,7 @@ recon_sgRef = zeros([32 116 114 NSlc]);
 for s = 1:size(new_sgRef_raw_zp,4)
     recon_sgRef(:,:,:,s) = grappa(new_sgRef_raw_zp_per(:,:,:,s),new_gpRef_raw_per(:,:,:,s),R,kernel);
 end
+figure;montage(combineCoilSOS(ifft2d(recon_sgRef,2,3),1),'DisplayRange',[0 1.5e-5])
 %%
 mapping = [2:2:NSlc,1:2:NSlc];
 mapping_back = zeros(size(mapping));
@@ -154,7 +155,7 @@ mapping_back(2:2:end) = 1:NSlc/2;
 mapping_back(1:2:end) = NSlc/2+1:NSlc;
 % MB = 4;
 % NLins = 57;
-slc_order = twix_obj.image.Sli(NLins*NSlc +1:NLins:NLins*NSlc + NSlc_mb*NLins);
+slc_order = twix_obj.image.Sli(nLin*NSlc +1:nLin:nLin*NSlc + NSlc_mb*nLin);
 %%
 curr_slc = mapping(slc_order(1));
 mb_slcs = curr_slc:(NSlc/MB):NSlc;
