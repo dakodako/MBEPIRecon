@@ -60,12 +60,12 @@ isReflected_phscor = twix_obj.phasecor.IsReflected();
 isReflected_phscor_img_meas = isReflected_phscor(3*NSlc+1:end);
 %%
 isReflected_phscor_sgRef = isReflected_phscor(1:NSlc*3);
-isReflected_sgRef = isReflected_img(1:NLin * NSlc);
+isReflected_sgRef = isReflected_img(1:nLin * NSlc);
 %%
-isReflected_imgMeas = reshape(isReflected_img_meas,[NLin,NSlc_mb,NMeas]);
+isReflected_imgMeas = reshape(isReflected_img_meas,[nLin,NSlc_mb,NMeas]);
 isReflected_phscor_imgMeas = reshape(isReflected_phscor_img_meas,[3,NSlc_mb,NMeas]);
 isReflected_phscor_sgRef = reshape(isReflected_phscor_sgRef,[3,NSlc]);
-isReflected_sgRef = reshape(isReflected_sgRef,[NLin,NSlc]);
+isReflected_sgRef = reshape(isReflected_sgRef,[nLin,NSlc]);
 % %% Phase correction on the image measurement data
 % new_image_raw_meas = zeros(size(image_meas_raws_reshaped1));
 % for m = 1:size(image_meas_raws_reshaped1,5)
@@ -102,7 +102,7 @@ isReflected_sgRef = reshape(isReflected_sgRef,[NLin,NSlc]);
 %%
 % sg_refscan_raws = image_raws(:,:,1:57*NSlc);
 load 3751/19_ep2d_bold_p2_sms4_1p8iso_20slc_10meas_matchAjuVol_offiso/ImageRawData/sg_refscan_raws.mat
-sg_refscan_raws_reshaped = reshape(sg_refscan_raws,[nADC, numCha, NLin,NSlc]);
+sg_refscan_raws_reshaped = reshape(sg_refscan_raws,[nADC, numCha, nLin,NSlc]);
 %%
 sg_phscor_raws = phasecor_raws(:,:,1:3*NSlc);
 sg_phscor_raws = reshape(sg_phscor_raws,[nADC,numCha,3,NSlc]);
@@ -111,7 +111,7 @@ sg_phscor_raws = reshape(sg_phscor_raws,[nADC,numCha,3,NSlc]);
 PCs_gp_all_new = estimatePC(squeeze(sg_phscor_raws(:,:,1,:) + sg_phscor_raws(:,:,3,:))./2,squeeze(sg_phscor_raws(:,:,2,:)));
 new_sgRef_raw = PCCorrection(sg_refscan_raws_reshaped,PCs_gp_all_new,isReflected_sgRef);
 
-%%
+%% read calibration scan for GRAPPA
 twix_obj.refscan.flagRemoveOS = true;
 twix_obj.refscan.flagRampSampRegrid = true;
 gp_refscan_raws = squeeze(twix_obj.refscan.unsorted());
