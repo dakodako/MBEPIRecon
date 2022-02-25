@@ -1,3 +1,4 @@
+% ================ Created on 10/01/2022 by D.Chi ================
 filename = '3751/meas_MID00095_FID14279_ep2d_bold_p2_sms4_1p8iso_20slc_10meas_matchAjuVol_offiso.dat';
 twix_obj = mapVBVD(filename);
 %%
